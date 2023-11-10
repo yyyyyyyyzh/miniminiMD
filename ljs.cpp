@@ -29,6 +29,7 @@
    Please read the accompanying README and LICENSE files.
 ---------------------------------------------------------------------- */
 
+#include "stdio.h"
 #include "mpi.h"
 
 #include "variant.h"
@@ -433,10 +434,10 @@ int main(int argc, char** argv)
   force.cutforce = in.force_cut;
   thermo.nstat = in.thermo_nstat;
 
-/*
+
   if(me == 0)
     printf("# Create System:\n");
-
+/*
   if(in.datafile) {
     read_lammps_data(atom, comm, neighbor, integrate, thermo, in.datafile, in.units);
     MMD_float volume = atom.box.xprd * atom.box.yprd * atom.box.zprd;
@@ -551,7 +552,7 @@ int main(int argc, char** argv)
   if(neighbor.halfneigh && neighbor.ghost_newton)
     comm.reverse_communicate(atom);
 
-  // if(me == 0) printf("# Starting dynamics ...\n");
+  if(me == 0) printf("# Starting dynamics ...\n");
 
   // if(me == 0) printf("# Timestep T U P Time\n");
 
@@ -591,7 +592,7 @@ int main(int argc, char** argv)
   //   output(in, atom, force, neighbor, comm, thermo, integrate, /*timer,*/ screen_yaml);
 
   // delete force;
-  // if(me == 0) printf("# Finish\n");
+  if(me == 0) printf("# Finish\n");
   MPI_Barrier(MPI_COMM_WORLD);
   MPI_Finalize();
 
