@@ -2,8 +2,8 @@
 SHELL = /bin/sh
 
 #Compiler and Linker
-CC =    clang++
-LINK =    clang++
+CC =    /opt/rvv-cross/bin/riscv64-unknown-elf-g++
+LINK =  	/opt/rvv-cross/bin/riscv64-unknown-elf-g++
 
 # MiniMD Files
 
