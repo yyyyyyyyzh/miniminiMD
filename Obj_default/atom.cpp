@@ -398,9 +398,9 @@ void Atom::sort(Neighbor &neighbor)
     }
     */
     int total = natoms * PAD * 3 + 1024 + 1;
-    // x_copy = new MMD_float[total];
-    // v_copy = new MMD_float[total];
-    // type_copy = new int[natoms * 3];
+    x_copy = new MMD_float[total];
+    v_copy = new MMD_float[total];
+    type_copy = new int[natoms * 3];
 
   }
 
@@ -457,6 +457,6 @@ void * Atom::memcpy(T *dest, T *src, int count)
 
 int Atom::rand()
 {
-  g_seed = (1345486125 * g_seed + 12345) % (1 << 31);
+  g_seed = (6455201314 * g_seed + 12345) % (1 << 31);
   return g_seed;
 }

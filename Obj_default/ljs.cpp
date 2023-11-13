@@ -41,7 +41,7 @@
 #include "comm.h"
 // #include "timer.h"
 #include "threadData.h"
-// #include "string.h"
+#include "string.h"
 #include "openmp.h"
 #include "force.h"
 // #include "force_lj.h"
@@ -76,7 +76,7 @@ int my_input(In &in)
   in.nx = 8;
   in.ny = 8;
   in.nz = 8;
-  in.ntimes = 500;
+  in.ntimes = 20;
   in.dt = 0.005;
   in.t_request = 1.44;
   in.rho = 0.8442;
@@ -105,8 +105,8 @@ int main(int argc, char** argv)
   int nx = -1;
   int ny = -1;
   int nz = -1;
-  int check_safeexchange = 1;   //if 1 complain if atom moves further than 1 subdomain length between exchanges
-  int do_safeexchange = 1;      //if 1 use safe exchange mode [allows exchange over multiple subdomains]
+  int check_safeexchange = 0;   //if 1 complain if atom moves further than 1 subdomain length between exchanges
+  int do_safeexchange = 0;      //if 1 use safe exchange mode [allows exchange over multiple subdomains]
                                 //if 1 must make sure exchange_all() is not ignored
   int use_sse = 0;              //setting for SSE variant of miniMD only
   int screen_yaml = 0;          //print yaml output to screen also
