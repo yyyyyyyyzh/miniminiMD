@@ -211,6 +211,12 @@ void Force::compute_halfneigh(Atom &atom, Neighbor &neighbor, int me)
   MMD_float t_virial = 0;
 
   for(int i = 0; i < nlocal; i++) {
+    if(i == 352){
+      t_energy *= 2;
+      t_energy /= 2;
+    }
+
+
     const int* const neighs = &neighbor.neighbors[i * neighbor.maxneighs];
     const int numneighs = neighbor.numneigh[i];
     const MMD_float xtmp = x[i * PAD + 0];

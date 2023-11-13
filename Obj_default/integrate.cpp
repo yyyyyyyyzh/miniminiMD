@@ -136,7 +136,8 @@ void Integrate::run(Atom &atom, Force &force, Neighbor &neighbor,
 
                 double d = dx * dx + dy * dy + dz * dz;
 
-                if(d > d_max) d_max = d;
+                if(d > d_max) 
+                  d_max = d;
               }
 
               d_max = sqrt(d_max);
