@@ -29,7 +29,7 @@
    Please read the accompanying README and LICENSE files.
 ---------------------------------------------------------------------- */
 
-#include "stdio.h"
+// #include "stdio.h"
 #include "mpi.h"
 
 #include "variant.h"
@@ -53,6 +53,7 @@
 #define BUFEXTRA 100
 #define MAXSWAP 6
 #define MAXBUF 10000
+#define NULL nullptr
 
 int my_input(In &);
 void create_box(Atom &, int, int, int, double);
@@ -80,10 +81,10 @@ int my_input(In &in)
   in.dt = 0.005;
   in.t_request = 1.44;
   in.rho = 0.8442;
-  in.neigh_every = 5;
+  in.neigh_every = 20;
   in.force_cut = 2.5;
   in.neigh_cut = 0.3;
-  in.thermo_nstat = 10;
+  in.thermo_nstat = 20;
 
   in.neigh_cut += in.force_cut;
 
@@ -105,8 +106,8 @@ int main(int argc, char** argv)
   int nx = -1;
   int ny = -1;
   int nz = -1;
-  int check_safeexchange = 1;   //if 1 complain if atom moves further than 1 subdomain length between exchanges
-  int do_safeexchange = 1;      //if 1 use safe exchange mode [allows exchange over multiple subdomains]
+  int check_safeexchange = 0;   //if 1 complain if atom moves further than 1 subdomain length between exchanges
+  int do_safeexchange = 0;      //if 1 use safe exchange mode [allows exchange over multiple subdomains]
                                 //if 1 must make sure exchange_all() is not ignored
   int use_sse = 0;              //setting for SSE variant of miniMD only
   int screen_yaml = 0;          //print yaml output to screen also
@@ -435,8 +436,8 @@ int main(int argc, char** argv)
   thermo.nstat = in.thermo_nstat;
 
 
-  if(me == 0)
-    printf("# Create System:\n");
+  // if(me == 0)
+  //   printf("# Create System:\n");
 /*
   if(in.datafile) {
     read_lammps_data(atom, comm, neighbor, integrate, thermo, in.datafile, in.units);
@@ -554,7 +555,7 @@ int main(int argc, char** argv)
   if(neighbor.halfneigh && neighbor.ghost_newton)
     comm.reverse_communicate(atom);
 
-  if(me == 0) printf("# Starting dynamics ...\n");
+  // if(me == 0) printf("# Starting dynamics ...\n");
 
   // if(me == 0) printf("# Timestep T U P Time\n");
 
@@ -594,7 +595,7 @@ int main(int argc, char** argv)
   //   output(in, atom, force, neighbor, comm, thermo, integrate, /*timer,*/ screen_yaml);
 
   // delete force;
-  if(me == 0) printf("# Finish\n");
+  // if(me == 0) printf("# Finish\n");
   MPI_Barrier(MPI_COMM_WORLD);
   MPI_Finalize();
 

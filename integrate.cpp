@@ -33,7 +33,7 @@
 #include "integrate.h"
 #include "openmp.h"
 #include "math.h"
-#include "stdio.h"
+// #include "stdio.h"
 
 Integrate::Integrate() {sort_every=20;}
 Integrate::~Integrate() {}
@@ -108,8 +108,7 @@ void Integrate::run(Atom &atom, Force &force, Neighbor &neighbor,
 
       } else {
         //these routines are not yet ported to OpenMP
-        {
-          
+          /*
           if(check_safeexchange) {
             #pragma omp master
             {
@@ -149,15 +148,17 @@ void Integrate::run(Atom &atom, Force &force, Neighbor &neighbor,
                 d_max, atom.box.xhi - atom.box.xlo, atom.box.yhi - atom.box.ylo, atom.box.zhi - atom.box.zlo);
 
             }
+            
 
           }
-
+          */
 
           // #pragma omp master
           // timer.stamp_extra_start();
           comm.exchange(atom);
           if(n+1>=next_sort) {
             atom.sort(neighbor);
+            x = atom.x;
             next_sort += sort_every;
           }
           comm.borders(atom);
@@ -168,10 +169,8 @@ void Integrate::run(Atom &atom, Force &force, Neighbor &neighbor,
             timer.stamp(TIME_COMM);
           }
           */
-
           if(check_safeexchange)
             for(int i = 0; i < PAD * atom.nlocal; i++) xold[i] = x[i];
-        }
 
         // #pragma omp barrier
 

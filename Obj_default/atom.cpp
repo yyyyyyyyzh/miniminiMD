@@ -397,7 +397,7 @@ void Atom::sort(Neighbor &neighbor)
       copy_size = nmax;
     }
     */
-    int total = natoms * PAD * 3 + 1024 + 1;
+    // int total = natoms * PAD * 3 + 1024 + 1;
     // x_copy = new MMD_float[total];
     // v_copy = new MMD_float[total];
     // type_copy = new int[natoms * 3];

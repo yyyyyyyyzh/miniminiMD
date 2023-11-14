@@ -29,7 +29,7 @@
    Please read the accompanying README and LICENSE files.
 ---------------------------------------------------------------------- */
 
-#include <cmath>
+#include "math.h"
 #include "mpi.h"
 #include "atom.h"
 #include "thermo.h"
@@ -383,15 +383,15 @@ int create_atoms(Atom &atom, int nx, int ny, int nz, double rho)
 
         for(m = 0; m < 5; m++) random(&n);
 
-        vx = random(&n);
+        vx = random(&n) - 0.5;
 
         for(m = 0; m < 5; m++) random(&n);
 
-        vy = random(&n);
+        vy = random(&n) - 0.5;
 
         for(m = 0; m < 5; m++) random(&n);
 
-        vz = random(&n);
+        vz = random(&n) - 0.5;
 
         atom.addatom(xtmp, ytmp, ztmp, vx, vy, vz);
       }

@@ -34,7 +34,7 @@
 #include "force.h"
 #include "integrate.h"
 #include "thermo.h"
-#include "stdio.h"
+// #include "stdio.h"
 
 Thermo::Thermo() {}
 Thermo::~Thermo() {}
@@ -109,11 +109,13 @@ void Thermo::compute(MMD_int iflag, Atom &atom, Neighbor &neighbor, Force &force
     double oldtime = timer.array[TIME_TOTAL];
     timer.barrier_stop(TIME_TOTAL);
   */
+
+  /*
     if(threads->mpi_me == 0) {
       // fprintf(stdout, "%i %e %e %e %6.3lf\n", istep, t, eng, p, istep == 0 ? 0.0 : timer.array[TIME_TOTAL]);
       fprintf(stdout, "%i %e %e %e\n", istep, t, eng, p);
     }
-
+  */
     // timer.array[TIME_TOTAL] = oldtime;
   
   }
