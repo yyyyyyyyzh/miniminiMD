@@ -77,14 +77,14 @@ int my_input(In &in)
   in.nx = 8;
   in.ny = 8;
   in.nz = 8;
-  in.ntimes = 500;
+  in.ntimes = 100;
   in.dt = 0.005;
   in.t_request = 1.44;
   in.rho = 0.8442;
   in.neigh_every = 20;
   in.force_cut = 2.5;
   in.neigh_cut = 0.3;
-  in.thermo_nstat = 20;
+  in.thermo_nstat = 10;
 
   in.neigh_cut += in.force_cut;
 
