@@ -38,6 +38,13 @@
 #define VECTORLENGTH 4
 #endif
 
+#define NTYPES2 16
+
+MMD_float new_cutforcesq[NTYPES2];
+MMD_float new_epsilon[NTYPES2];
+MMD_float new_sigma6[NTYPES2];
+MMD_float new_sigma[NTYPES2];
+
 Force::Force(int ntypes_)
 {
   cutforce = 0.0;
@@ -46,10 +53,14 @@ Force::Force(int ntypes_)
   style = FORCELJ;
   ntypes = ntypes_;
 
-  cutforcesq = new MMD_float[ntypes*ntypes];
-  epsilon = new MMD_float[ntypes*ntypes];
-  sigma6 = new MMD_float[ntypes*ntypes];
-  sigma = new MMD_float[ntypes*ntypes];
+  // cutforcesq = new MMD_float[ntypes*ntypes];
+  // epsilon = new MMD_float[ntypes*ntypes];
+  // sigma6 = new MMD_float[ntypes*ntypes];
+  // sigma = new MMD_float[ntypes*ntypes];
+  cutforcesq = new_cutforcesq;
+  epsilon = new_epsilon;
+  sigma = new_sigma;
+  sigma6 = new_sigma6;
 
   for(int i = 0; i<ntypes*ntypes; i++) {
     cutforcesq[i] = 0.0;
